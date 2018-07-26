@@ -1,0 +1,1 @@
+# magix-combine-tool-config
