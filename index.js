@@ -39,7 +39,6 @@ module.exports = (magixCliConfig, customConfig = {}) => {
             './src/app/assets/iconfont.less'
         ],
 
-
         galleries: {
             lgRoot: magixCliConfig.galleriesLgRoot || 'app/gallery-local/',
             mxRoot: magixCliConfig.galleriesMxRoot || 'app/gallery/',
@@ -97,6 +96,10 @@ module.exports = (magixCliConfig, customConfig = {}) => {
         },
 
         mxViewProcessor(view) {
+            if (!magixCliConfig.dynamicProjectName) {
+                return
+            }
+
             let { path, pkgName } = view;
             let fi = path.indexOf('/');
             if (fi > 0) {
