@@ -46,6 +46,9 @@ module.exports = (magixCliConfig, customConfig = {}) => {
                 'mx-popover': {
                     tag: 'span'
                 },
+                'mx-popconfirm': {
+                    tag: 'span'
+                },
                 'mx-calendar.rangepicker': {
                     tag: 'div'
                 },
