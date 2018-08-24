@@ -55,6 +55,9 @@ module.exports = (magixCliConfig, customConfig = {}) => {
                 'mx-switch': {
                     tag: 'span'
                 },
+                'mx-checkbox': {
+                    tag: 'input'
+                },
                 'mx-table'(tag) {
                     let content = tag.content;
                     let ctrl = tag.seprateAttrs('div');
@@ -72,11 +75,11 @@ module.exports = (magixCliConfig, customConfig = {}) => {
                             <span class="loading-anim"></span>
                         </div>`;
                 },
-                'mx-dropdown.item'(i) {
-                    return `<i ${i.attrs} class="none">${i.content}</i>`;
+                'mx-dropdown.item'(tag) {
+                    return `<i ${tag.attrs} class="none">${tag.content}</i>`;
                 },
-                'mx-carousel.panel'(i) {
-                    return `<div ${i.attrs} style="position: absolute;" class="carousel-panel">${i.content}</div>`;
+                'mx-carousel.panel'(tag) {
+                    return `<div ${tag.attrs} data-carousel="true">${tag.content}</div>`;
                 }
             }
         },
