@@ -8,7 +8,7 @@ module.exports = (magixCliConfig, customConfig = {}) => {
         debug: true,
         tmplFolder: srcFolder,
         srcFolder: buildFolder,
-        loaderType: 'cmd',
+        loaderType: magixCliConfig.magixLoaderType || 'cmd',
         cssSelectorPrefix: magixCliConfig.rootAppName || '', //请填写app唯一标识，防止上线的时候样式名压缩与全局样式冲突
         tmplBindEvents: ['change', 'input', 'keyup'],
         tmplArtEngine: true, //类mustach引擎
@@ -98,7 +98,7 @@ module.exports = (magixCliConfig, customConfig = {}) => {
             var str = ts.transpileModule(content, {
                 compilerOptions: {
                     lib: ['es7'],
-                    target: 'es3',
+                    target: magixCliConfig.magixJsTranspile || 'es3',
                     module: ts.ModuleKind.None
                 }
             });
