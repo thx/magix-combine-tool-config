@@ -42,46 +42,7 @@ module.exports = (magixCliConfig, customConfig = {}) => {
         galleries: {
             lgRoot: magixCliConfig.galleriesLgRoot || 'app/gallery-local/',
             mxRoot: magixCliConfig.galleriesMxRoot || 'app/gallery/',
-            mxMap: {
-                'mx-popover': {
-                    tag: 'span'
-                },
-                'mx-popconfirm': {
-                    tag: 'span'
-                },
-                'mx-calendar.rangepicker': {
-                    tag: 'div'
-                },
-                'mx-switch': {
-                    tag: 'span'
-                },
-                'mx-checkbox': {
-                    tag: 'input'
-                },
-                'mx-table'(tag) {
-                    let content = tag.content;
-                    let ctrl = tag.seprateAttrs('div');
-                    content = content.replace(/<table/g, '<div>$&').replace(/<\/table>/g, '$&</div>');
-                    return `<${ctrl.tag} mx-view="${tag.mxView}" ${ctrl.attrs} ${ctrl.viewAttrs}>${content}</${ctrl.tag}>`;
-                },
-                'mx-table.excel'(tag) {
-                    let content = tag.content;
-                    let ctrl = tag.seprateAttrs('div');
-                    content = content.replace(/<table/g, '<div>$&').replace(/<\/table>/g, '$&</div>');
-                    return `<${ctrl.tag} mx-view="${tag.mxView}" ${ctrl.attrs} ${ctrl.viewAttrs}>${content}</${ctrl.tag}>`;
-                },
-                'mx-loading'() {
-                    return `<div class="loading">
-                            <span class="loading-anim"></span>
-                        </div>`;
-                },
-                'mx-dropdown.item'(tag) {
-                    return `<i ${tag.attrs} class="none">${tag.content}</i>`;
-                },
-                'mx-carousel.panel'(tag) {
-                    return `<div ${tag.attrs} data-carousel="true">${tag.content}</div>`;
-                }
-            }
+            mxMap: {}
         },
         compileTmplCommand(content) {
             var str = ts.transpileModule(content, {
