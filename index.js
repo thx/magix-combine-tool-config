@@ -1,9 +1,32 @@
 'use strict'
 const ts = require('typescript')
+const path = require('path')
 
-module.exports = (magixCliConfig, customConfig = {}) => {
+module.exports = (magixCliConfig, customConfig = {}, cwd) => {
     let srcFolder = magixCliConfig.srcFolder || 'src' //source folder
     let buildFolder = magixCliConfig.buildFolder || 'build' //build folder
+    let globalCssPaths = magixCliConfig.globalCss || [
+        './src/app/gallery/mx-style/index.less'
+    ]
+
+    let scopedCssPaths = magixCliConfig.scopedCss || [
+        './src/app/assets/iconfont.less'
+    ]
+    let galleriesLgRoot = magixCliConfig.galleriesLgRoot || 'app/gallery-local/'
+    let galleriesMxRoot = magixCliConfig.galleriesMxRoot || 'app/gallery/'
+
+    //非项目目录时，修正目录
+    if (cwd) {
+        srcFolder = path.resolve(cwd, srcFolder)
+        buildFolder = path.resolve(cwd, buildFolder)
+        globalCssPaths = globalCssPaths.map(_path => {
+            return path.resolve(cwd, _path)
+        })
+        scopedCssPaths = scopedCssPaths.map(_path => {
+            return path.resolve(cwd, _path)
+        })
+    }
+
     let config = {
         debug: true,
         tmplFolder: srcFolder,
@@ -32,16 +55,12 @@ module.exports = (magixCliConfig, customConfig = {}) => {
             jsLoop: false, //js循环
             tmplAttrAnchor: false, //检测anchor类标签，a标签javascript:;
         },
-        globalCss: magixCliConfig.globalCss || [
-            './src/app/gallery/mx-style/index.less'
-        ],
-        scopedCss: magixCliConfig.scopedCss || [
-            './src/app/assets/iconfont.less'
-        ],
+        globalCss: globalCssPaths,
+        scopedCss: scopedCssPaths,
 
         galleries: {
-            lgRoot: magixCliConfig.galleriesLgRoot || 'app/gallery-local/',
-            mxRoot: magixCliConfig.galleriesMxRoot || 'app/gallery/',
+            lgRoot: galleriesLgRoot,
+            mxRoot: galleriesMxRoot,
             mxMap: {}
         },
         compileTmplCommand(content) {
