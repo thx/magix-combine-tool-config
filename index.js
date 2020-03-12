@@ -37,7 +37,6 @@ module.exports = (magixCliConfig, customConfig = {}, cwd) => {
         tmplArtEngine: true, //类mustach引擎
         magixUpdaterIncrement: true,
         addTmplViewsToDependencies: true,
-        tmplSnippetInScript: true, //支持html里的js检测
         checker: {
             // css: false, //样式
             // cssUrl: false, //样式中的url
