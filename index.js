@@ -75,6 +75,11 @@ module.exports = (magixCliConfig, customConfig = {}, cwd) => {
             return str;
         },
         compileJSStart(content, from) {
+            //如果有冲突标识，则报错
+            if (/<<<<<<< HEAD[\s\S]*=======[\s\S]*>>>>>>>/.test(content)) {
+                throw new Error(`检测到代码有冲突，请先解决冲突`)
+            }
+
             var str = ts.transpileModule(content, {
                 compilerOptions: {
                     lib: ['es7'],
