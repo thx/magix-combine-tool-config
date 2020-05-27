@@ -77,7 +77,7 @@ module.exports = (magixCliConfig, customConfig = {}, cwd) => {
         compileJSStart(content, from) {
             //如果有冲突标识，则报错
             if (/<<<<<<< HEAD[\s\S]*=======[\s\S]*>>>>>>>/.test(content)) {
-                throw new Error(`检测到代码有冲突，请先解决冲突`)
+                throw (`检测到代码有冲突，请先解决冲突 \n冲突文件：${from.from}`)
             }
 
             var str = ts.transpileModule(content, {
@@ -88,6 +88,7 @@ module.exports = (magixCliConfig, customConfig = {}, cwd) => {
                 }
             });
             str = str.outputText;
+
             return str;
         },
 
