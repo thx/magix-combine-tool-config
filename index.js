@@ -33,6 +33,7 @@ module.exports = (magixCliConfig, customConfig = {}, cwd) => {
         srcFolder: buildFolder,
         loaderType: magixCliConfig.magixLoaderType || 'cmd',
         cssSelectorPrefix: magixCliConfig.rootAppName || '', //请填写app唯一标识，防止上线的时候样式名压缩与全局样式冲突
+        revisableStringPrefix: magixCliConfig.rootAppName || '',
         tmplBindEvents: ['change', 'input', 'keyup'],
         tmplArtEngine: true, //类mustach引擎
         magixUpdaterIncrement: true,
